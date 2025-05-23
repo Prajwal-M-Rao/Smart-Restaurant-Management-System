@@ -173,7 +173,7 @@ class PlaceOrderView(LoginRequiredMixin, View):
             [customer.email],
         )
         email.attach_alternative(html_content, "text/html")
-        email.send()
+        #email.send()
 
         
         
@@ -255,13 +255,13 @@ class ReserveTableView(LoginRequiredMixin, View):
             reservation_start_time=reservation_start_time,
             reservation_end_time=reservation_end_time
         )
-        send_mail(
-            'Table Reservation Confirmation',
-            f'Dear {customer.first_name},\n\nYour table reservation is confirmed for {reservation_date} from {reservation_start_time} to {reservation_end_time}.\n\nThank you!',
-            'your-email@gmail.com',
-            [customer.email],
-            fail_silently=False,
-        )
+        # send_mail(
+        #     'Table Reservation Confirmation',
+        #     f'Dear {customer.first_name},\n\nYour table reservation is confirmed for {reservation_date} from {reservation_start_time} to {reservation_end_time}.\n\nThank you!',
+        #     'your-email@gmail.com',
+        #     [customer.email],
+        #     fail_silently=False,
+        # )
 
         
         messages.success(request, 'Table reserved successfully.')
@@ -568,13 +568,13 @@ class UpdateOrderStatusView(LoginRequiredMixin, View):
         if status == 'D':
             customer = order.customer
             # total_amt=order.total_amount
-            send_mail(
-                'Your Order is Delivered',
-                f'Dear {customer.first_name},\n\nYour order has been delivered. We hope you enjoyed your meal! Please proceed to pay the bill.\n\nThank you for choosing us!',
-                'your-email@gmail.com',  # Replace with your email
-                [customer.email],
-                fail_silently=False,
-            )
+            # send_mail(
+            #     'Your Order is Delivered',
+            #     f'Dear {customer.first_name},\n\nYour order has been delivered. We hope you enjoyed your meal! Please proceed to pay the bill.\n\nThank you for choosing us!',
+            #     'your-email@gmail.com',  # Replace with your email
+            #     [customer.email],
+            #     fail_silently=False,
+            # )
         return redirect('active_orders')
 
 ########################################                           ACTIVE AND COMPLETE ORDERS                          ########################################
